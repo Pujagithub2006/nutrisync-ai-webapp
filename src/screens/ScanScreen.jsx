@@ -1,5 +1,6 @@
 // ─── ScanScreen.jsx ─────────────────────────────────────────────
 import { useState, useRef } from "react";
+import { API_BASE_URL } from '../config';
 import { storage } from "../utils/storage";
 
 export default function ScanScreen({ vitals, onNavigate }) {
@@ -36,7 +37,7 @@ export default function ScanScreen({ vitals, onNavigate }) {
     formData.append("image", file);
 
     try {
-      const response = await fetch("http://localhost:5000/api/scan-food", {
+      const response = await fetch(`${API_BASE_URL}/api/scan-food`, {
         method: "POST",
         body: formData,
       });
@@ -67,7 +68,7 @@ export default function ScanScreen({ vitals, onNavigate }) {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/search-food?query=${encodeURIComponent(searchQuery)}`,
+        `${API_BASE_URL}/api/search-food?query=${encodeURIComponent(searchQuery)}`,
       );
       const data = await response.json();
 
@@ -100,7 +101,7 @@ export default function ScanScreen({ vitals, onNavigate }) {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/food-ai-recommendation",
+        `${API_BASE_URL}/api/food-ai-recommendation`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

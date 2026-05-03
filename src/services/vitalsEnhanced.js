@@ -2,10 +2,7 @@
 // Enhanced vitals service - fetches from Node backend
 
 import { useState, useEffect } from 'react';
-
-const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? '' 
-  : 'http://localhost:5000';
+import { API_BASE_URL } from '../config';
 
 function getBaseHR() {
   const h = new Date().getHours();

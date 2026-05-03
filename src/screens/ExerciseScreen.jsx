@@ -1,5 +1,6 @@
 // ─── ExerciseScreen.jsx ───────────────────────────────────────
 import { useState } from "react";
+import { API_BASE_URL } from '../config';
 import { storage } from "../utils/storage";
 
 function TypingDots() {
@@ -240,7 +241,7 @@ Return ONLY valid JSON array of exercises:`;
 
     try {
       // USE THE NEW EXERCISE ENDPOINT
-      const res = await fetch("http://localhost:5000/api/exercise-chat", {
+      const res = await fetch(`${API_BASE_URL}/api/exercise-chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: [{ role: "user", content: prompt }] }),

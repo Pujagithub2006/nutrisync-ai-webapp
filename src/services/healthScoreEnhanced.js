@@ -3,12 +3,13 @@
 // Falls back to original scoring if backend unavailable
 
 import { calculateHealthScore } from '../utils/healthScore';
+import { API_BASE_URL } from '../config';
 
 // Enhanced health scoring with Python backend integration
 export async function calculateHealthScoreEnhanced(profile, vitals, diary = []) {
   try {
     // Try to get enhanced scoring from Python backend
-    const response = await fetch('http://localhost:5000/api/physiology-enhanced', {
+    const response = await fetch(`${API_BASE_URL}/api/physiology-enhanced`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -73,7 +74,7 @@ export async function calculateHealthScoreEnhanced(profile, vitals, diary = []) 
 // Get daily targets from Python backend
 export async function getDailyTargetsEnhanced(profile, vitals) {
   try {
-    const response = await fetch('http://localhost:5000/api/vitals-realtime');
+    const response = await fetch(`${API_BASE_URL}/api/vitals-realtime`);
     
     if (response.ok) {
       const data = await response.json();

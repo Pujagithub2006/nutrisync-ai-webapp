@@ -1,5 +1,6 @@
 // ─── DayPlanScreen.jsx ────────────────────────────────────────
 import { useState } from 'react';
+import { API_BASE_URL } from '../config';
 import { storage } from '../utils/storage';
 
 function TypingDots() {
@@ -54,7 +55,7 @@ export default function DayPlanScreen({ vitals }) {
 
   async function fetchFoodImage(mealName) {
     try {
-      const res  = await fetch(`http://localhost:5000/api/food-image?query=${encodeURIComponent(mealName)}`);
+      const res  = await fetch(`${API_BASE_URL}/api/food-image?query=${encodeURIComponent(mealName)}`);
       const data = await res.json();
       return data.image || null;
     } catch { return null; }
@@ -156,7 +157,7 @@ Return ONLY valid JSON, no markdown:
 }`;
 
     try {
-      const res = await fetch('http://localhost:5000/api/chat', {
+      const res = await fetch(`${API_BASE_URL}/api/chat`, {
         method:'POST',
         headers:{ 'Content-Type':'application/json' },
         body: JSON.stringify({ messages:[{ role:'user', content:prompt }] }),

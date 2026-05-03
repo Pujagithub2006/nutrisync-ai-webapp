@@ -1,5 +1,6 @@
 // ─── AIScreen.jsx ─────────────────────────────────────────────
 import { useState } from "react";
+import { API_BASE_URL } from '../config';
 import { storage } from "../utils/storage";
 import {
   calculateHealthScore,
@@ -636,7 +637,7 @@ export default function AIScreen({ vitals: rawVitals }) {
   async function fetchFoodImage(name) {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/food-image?query=${encodeURIComponent(name)}`,
+        `${API_BASE_URL}/api/food-image?query=${encodeURIComponent(name)}`,
       );
       const data = await res.json();
 
@@ -718,7 +719,7 @@ export default function AIScreen({ vitals: rawVitals }) {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/full-day-plan", {
+      const response = await fetch(`${API_BASE_URL}/api/full-day-plan`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -866,7 +867,7 @@ Return EXACTLY this JSON structure:
 }`;
 
     try {
-      const res = await fetch("http://localhost:5000/api/chat", {
+      const res = await fetch(`${API_BASE_URL}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: [{ role: "user", content: prompt }] }),

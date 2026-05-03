@@ -1,9 +1,7 @@
 // ─── api.js ───────────────────────────────────────────────────────
 // Centralized API service for NutriSync
 
-const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? '' 
-  : 'http://localhost:5000';
+import { API_BASE_URL } from '../config';
 
 export async function calculatePhysiology(data) {
   try {
