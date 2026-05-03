@@ -64,17 +64,17 @@ export function useVitalsEnhanced() {
           setError(null);
         } else {
           // Use simulated data if API fails
-          useSimulatedData();
+          updateSimulatedData();
         }
       } catch (err) {
         console.warn('Failed to fetch vitals, using simulated:', err);
-        useSimulatedData();
+        updateSimulatedData();
       } finally {
         setLoading(false);
       }
     }
 
-    function useSimulatedData() {
+    function updateSimulatedData() {
       setVitals(prev => ({
         ...prev,
         hr: Math.round(clamp(prev.hr + (Math.random() - 0.5) * 4, 55, 100)),
